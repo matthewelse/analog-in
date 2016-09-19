@@ -35,6 +35,16 @@ DECLARE_CLASS_FUNCTION(AnalogIn, read)
     return jerry_create_number(((AnalogIn*)native_ptr)->read());
 }
 
+DECLARE_CLASS_FUNCTION(AnalogIn, read_u16)
+{
+    CHECK_ARGUMENT_COUNT(AnalogIn, read_u16, (args_count == 0));
+
+    uintptr_t native_ptr;
+    jerry_get_object_native_handle(this_obj, &native_ptr);
+
+    return jerry_create_number(((AnalogIn*)native_ptr)->read_u16());
+}
+
 void NAME_FOR_CLASS_NATIVE_DESTRUCTOR(AnalogIn) (uintptr_t handle) {
     delete (AnalogIn*) handle;
 }
@@ -51,6 +61,7 @@ DECLARE_CLASS_CONSTRUCTOR(AnalogIn) {
     jerry_set_object_native_handle(js_object, native_ptr, NAME_FOR_CLASS_NATIVE_DESTRUCTOR(AnalogIn));
 
     ATTACH_CLASS_FUNCTION(js_object, AnalogIn, read);
+    ATTACH_CLASS_FUNCTION(js_object, AnalogIn, read_u16);
 
     return js_object;
 }
