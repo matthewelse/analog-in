@@ -1,0 +1,9 @@
+{
+    "source": [
+        "."
+    ],
+    "includes": [
+        "analog-in/lib_analog_in.h"
+    ],
+    "name": "analog_in"
+}
